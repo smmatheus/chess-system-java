@@ -38,6 +38,9 @@ public class Board {
 	}
 	
 	public void placePiece(Piece piece,Position position) {
+		if(thereIsAPiece(position)) {
+			throw new BoardException("Há uma peça nessa posição" + position);
+		}
 		pieces[position.getRow()][position.getCollum()] = piece;
 		piece.position = position;
 	}
@@ -51,6 +54,9 @@ public class Board {
 	}
 	
 	public boolean thereIsAPiece(Position position) {
+		if (!positionExists(position)) {
+			throw new BoardException("Não há essa posição do tabuleiro");
+		}	
 		return piece(position) != null;
 	}
 }
