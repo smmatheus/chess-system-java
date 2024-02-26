@@ -33,6 +33,13 @@ public class ChessMatch {
 		return (ChessPiece)capturedPiece;
 	}
 	
+	private Piece makeMove(Position source, Position target) {
+		Piece p = board.removePiece(source);
+		Piece capturedPiece = board.removePiece(target);
+		board.placePiece(p, target);
+		return (ChessPiece) capturedPiece;
+	}
+	
 	private void validateSourcePosition(Position position) {
 		if (board.thereIsAPiece(position))
 			throw new ChessException("Não existe peça na posição de origem");
